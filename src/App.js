@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import seriesData from './SeariesData';
+import Card from './Card';
+
+const cardMap = (items, index, arr) => {
+    console.log('map array items', items);
+    console.log('map array index', index);
+    console.log('actual array', arr);
+    return (
+        <Card
+            key={index + 1}//to overcome warnig of unique key for each element
+            imgsrc={items.imgsrc}
+            title={items.title}
+            name={items.name}
+            link={items.link}
+        />
+    );
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <React.Fragment>
+            <h1 className="heading_style"> List Of Top 5 Netflix Series In 2020 </h1>
+            <div class="row">
+                {seriesData.map(cardMap)};
+            </div>
+        </React.Fragment>
+    );
 }
 
 export default App;
